@@ -1,0 +1,61 @@
+
+services:
+  postgres:
+    image: pgvector/pgvector:pg16
+    container_name: ultimate_postgres
+    restart: always
+    environment:
+      POSTGRES_USER: ultimate_user
+      POSTGRES_PASSWORD: ultimate_password
+      POSTGRES_DB: ultimate_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - vectors_data:/var/lib/postgresql/data
+    networks:
+      ulti-network:
+        ipv4_address: 172.28.0.2
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: ultimate_pgadmin
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: admin_password
+    ports:
+      - "8080:80"
+    depends_on:
+      - postgres
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
+    networks:
+      ulti-network:
+        ipv4_address: 172.28.0.3
+
+  app:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    container_name: ultimate_app
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./src:/app
+    command: uvicorn api:app --host 0.0.0.0 --port 8000 --reload
+    depends_on:
+      - postgres
+    networks:
+      ulti-network:
+        ipv4_address: 172.28.0.4
+
+volumes:
+  vectors_data:
+  pgadmin_data:
+
+networks:
+  ulti-network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.28.0.0/16

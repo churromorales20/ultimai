@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="es" class="h-full">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chat Ultimate Frisbee</title>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdn.jsdelivr.net/npm/@mdi/font@7.4.47/css/materialdesignicons.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/typeit@8.7.1/dist/index.umd.js"></script>
+
+  <style>
+    body{
+      background-image: url(https://nuevecuatrouno.com/wp-content/uploads/2025/03/ultimate-freesbe-140721-111920.jpg);
+      background-size: cover;
+    }
+  </style>
+</head>
+<body class="h-full flex flex-col bg-gray-100 lg:items-center">
+  <!-- Header -->
+  <div class="shadow-2xl h-full w-full flex flex-col lg:max-w-[600px]">
+    <header class="bg-blue-600 text-white px-4 py-3 flex items-center">
+      <i class="mdi mdi-frisbee text-2xl mr-2"></i>
+      <h1 class="text-xl font-semibold">UltimAI</h1>
+    </header>
+    
+    <main id="_chat_answers_container_" class="flex-1 flex flex-col bg-white overflow-y-auto p-4 space-y-4">
+      <div id="_main_preview_container_" class="flex-1 flex items-center justify-center">
+        <i id="_main_loader_" class="mdi mdi-loading text-8xl text-blue-600 animate-spin"></i>
+        <p id="_main_welcome_"class="text-center hidden text-gray-400">Bienvenido a UltimAI, el primer agente de IA diseñado para ayudarte a resolver o aclarar dudas que puedan surgir durante un partido de Ultimate Frisbee. 
+          Puedes hacer preguntas como, por ejemplo: <br /><b>¿En qué momento se debe marcar un pick?</b></p>
+      </div>
+    </main>
+    
+    <div id="_chat_form_container_" class="hidden bg-white border-t px-2 py-2 flex flex-col space-y-2">
+      <div>
+        <button id="_reset_conversation_btn_" class="flex items-center space-x-1 px-2 py-1 border border-gray-400 rounded-md text-gray-700 hover:bg-gray-200">
+          <i class="mdi mdi-refresh text-sm"></i>
+          <span class="text-sm">Reiniciar conversacion</span>
+        </button>
+      </div>
+      <div>
+        <form id="_chat_form_" class="flex space-x-2 w-full">
+          <input 
+            type="text"
+            id="_question_query_"
+            placeholder="Pregunta algo sobre Ultimate Frisbee..."
+            class="flex-1 border rounded-full px-4 py-2 focus:outline-none focus:ring focus:border-blue-300"
+            required
+          >
+          <button 
+            id="send-button"
+            type="submit" 
+            class="bg-blue-600 text-white px-4 py-2 rounded-full hover:bg-blue-700 flex items-center space-x-2"
+          >
+            <i id="send-icon" class="mdi mdi-send text-xl"></i>
+            <i id="loader" class="mdi mdi-loading text-xl animate-spin hidden"></i>
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div id="modal-backdrop" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center z-50">
+    <!-- Modal content -->
+    <div class="bg-white rounded-lg shadow-lg w-full max-w-md m-4 p-2 space-y-4">
+      <h2 class="text-xl font-semibold flex items-center space-x-2">
+        <i class="mdi mdi-pencil text-2xl"></i>
+        <span>Sugerir nueva regla</span>
+      </h2>
+      <form id="_feedback_form" class="space-y-4">
+        <div>
+          <label for="suggested-rule" class="block text-sm font-medium text-gray-700 mb-1">Regla sugerida</label>
+          <input type="text" id="feedback_suggested_rule" name="suggested_rule" class="w-full border rounded px-3 py-2 focus:outline-none focus:ring focus:border-blue-300" required>
+        </div>
+        <div>
+          <label for="explanation" class="block text-sm font-medium text-gray-700 mb-1">Explicación / comentarios</label>
+          <textarea id="feedback_explanation" name="explanation" rows="4" class="w-full border rounded px-3 py-2 focus:outline-none focus:ring focus:border-blue-300" required></textarea>
+        </div>
+        <div class="flex justify-end space-x-2 pt-2">
+          <button type="button" id="cancel-modal" class="flex items-center space-x-1 px-4 py-1 rounded-md bg-gray-300 text-gray-800 hover:bg-gray-400">
+            <i class="mdi mdi-close"></i>
+            <span>Cancelar</span>
+          </button>
+          <button type="submit" class="flex items-center space-x-1 px-4 py-1 rounded-md bg-green-600 text-white hover:bg-green-700">
+            <i class="mdi mdi-check"></i>
+            <span>Enviar</span>
+            <input type="hidden" id="_feedback_id_" value="">
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    function openFeedbackModal(id) {
+      $('#modal-backdrop').removeClass('hidden');
+      $('#_feedback_id_').val(id)
+    }
+
+    function sendPositiveFeedback(id) {
+      
+      $(`.btn-feedback-${id}`).prop('disabled', true);
+      $(`#_positive_btn_ico_${id}`).addClass('hidden');
+      $(`#_positive_btn_loader_${id}`).removeClass('hidden');
+
+      sendFeedback({
+        in_agree: true,
+        answer_id: id,
+      }, () =>{
+        $(`#_positive_btn_ico_${id}`).removeClass('hidden');
+        $(`#_positive_btn_loader_${id}`).addClass('hidden');
+      })
+    }
+
+    function displaySignals(itemId) {
+      $(`#${itemId} .signals-container img`).fadeIn(500).promise().done(() => {
+        scrollToBottomOfAnswer(`#${itemId}`)
+      })
+      
+    }
+
+    function answerTypingAnimation(data, itemId, animateSignals) {
+      const instance = new TypeIt(`#${itemId} .short-answer`, {
+        afterComplete: async (instance) => {
+          
+          const ruleNumber = new TypeIt(`#${itemId} .rule-number`, {
+            speed: 30,
+            afterComplete: async (instance) => {
+              const expla = new TypeIt(`#${itemId} .long-answer`, {
+                speed: 30,
+                afterComplete: async (instance) => {
+
+                  if (animateSignals) {
+                    const signals = new TypeIt(`#${itemId} .signals-title`, {
+                      speed: 30,
+                      afterComplete: async (instance) => {
+                        displaySignals(itemId)
+                      }
+                    })
+                    .type(`Señales relacionadas`)
+                    .go();
+                    signals.destroy();
+                  } else {
+                    scrollToBottomOfAnswer(`#${itemId}`)
+                  }
+                  
+                },
+              })
+              .type(`<strong>Explicación:</strong>  ${data.explanation}`)
+              .go();
+              expla.destroy()
+            }
+          })
+          .type(`<strong>Regla:</strong> ${data.rule}`)
+          .go();
+          ruleNumber.destroy()
+        },
+        speed: 30
+      }).type(`<strong>Respuesta:</strong> ${data.short_answer}`).go();
+
+      instance.destroy();
+
+      scrollToBottomOfAnswer(`#${itemId}`)
+    }
+
+    function addNewAnswer(data, query, fromInit){
+      const itemId = `_answered_question_${data.id}_`;
+      const isEmptyContainer = $('#_chat_answers_container_').find('.answered-question').length === 0
+      renderNewAnswer(data, query, itemId, isEmptyContainer, fromInit);
+      const animateSignals = data.hasOwnProperty('signals') && Array.isArray(data.signals) && data.signals.length > 0 ;
+      function showItem() {
+        $(`#${itemId}`).fadeIn(500, function(){
+          if (!fromInit) {
+            answerTypingAnimation(data, itemId, animateSignals)
+          }
+        })
+      }
+
+      if (isEmptyContainer) {
+        $('#_main_preview_container_').fadeOut(500, function(){
+          if (!fromInit) {
+            showItem();
+          }
+        });
+      } else if (!fromInit){
+        showItem()
+      }
+      
+    }
+
+    function renderNewAnswer(data, query, itemId, isEmptyContainer, fromInit){
+      const hiddenAsnwer = fromInit || isEmptyContainer ? 'hidden' : ''
+      const imagesDiv = data.hasOwnProperty('signals') && Array.isArray(data.signals) && data.signals.length > 0 ? `
+        <div class="signals-container mt-2">
+          <h3 class="text-base text-bold signals-title">${fromInit ? 'Señales relacionadas' : ''}</h3>
+          ${data.signals.map((signal) => `<img class="w-16 h-16 ${fromInit ? '' : 'hidden'}" src="/assets/${signal}.png">`).join(' ')}
+        </div>
+      ` : ``
+
+      const html = `
+        <div class="bg-white rounded-lg shadow p-4 max-w-xl answered-question ${hiddenAsnwer}" id="${itemId}">
+          <p class="text-gray-700"><strong>Pregunta:</strong> ${query}</p>
+          <p class="text-gray-700 short-answer"> ${fromInit ? `<strong>Respuesta:</strong> ${data.short_answer}` : ''}</p>
+          <div class="mt-2 text-sm text-gray-600">
+            <p class="rule-number"> ${fromInit ? `<strong>Regla:</strong> ${data.rule}` : ''}</p>
+            <p class="long-answer"> ${fromInit ? `<strong>Explicación:</strong> ${data.explanation}` : ''}</p>
+          </div>
+          ${imagesDiv}
+          <div class="mt-4 flex space-x-2">
+            <button onclick="sendPositiveFeedback('${data.id}')" class="btn-feedback-${data.id} flex items-center space-x-1 px-3 py-1 rounded-lg bg-green-600 text-white hover:bg-green-700">
+              <i id="_positive_btn_ico_${data.id}" class="mdi mdi-thumb-up text-sm"></i>
+              <i id="_positive_btn_loader_${data.id}" class="mdi mdi-loading text-sm animate-spin hidden"></i>
+              <span class="hidden sm:block">Estoy de acuerdo</span>
+              <span class="text-sm sm:hidden">De acuerdo</span>
+            </button>
+            <button onclick="openFeedbackModal('${data.id}')" class="btn-feedback-${data.id} flex items-center space-x-1 px-3 py-1 rounded-lg bg-red-600 text-white hover:bg-red-700">
+              <i id="_negative_btn_ico_${data.id}" class="mdi mdi-thumb-down text-sm"></i>
+              <i id="_negative_btn_loader_${data.id}" class="mdi mdi-loading text-sm animate-spin hidden"></i>
+              <span class="hidden sm:block">No estoy de acuerdo</span>
+              <span class="text-sm sm:hidden">En desacuerdo</span>
+            </button>
+          </div>
+        </div>
+      `;
+
+      $('#_chat_answers_container_').append(html);
+    }
+
+    function scrollToBottomOfAnswer(answerId) {
+      const chatContainer = $('#_chat_answers_container_');
+      const answerElem = $(`${answerId}`);
+
+      chatContainer.animate({
+        scrollTop: chatContainer.scrollTop() + answerElem.position().top
+      }, 500);
+    }
+
+    function sendFeedback(feedbackRequest, callback) {
+      $.ajax({
+          url: '/answer/feedback',
+          type: 'POST',
+          contentType: 'application/json',
+          data: JSON.stringify(feedbackRequest),
+          success: function(data) {
+            
+          },
+          error: function() {
+            alert('Error al procesar la pregunta.');
+          },
+          complete: function() {
+            callback();
+          }
+        });
+    }
+
+    function closeFeedbackModal () {
+      $('#modal-backdrop').addClass('hidden');
+    }
+
+    function initChat(){
+      $.ajax({
+        url: '/init',
+        type: 'get',
+        contentType: 'application/json',
+        success: function(data) {
+          $('#_chat_form_container_').removeClass('hidden');
+          $('#_main_loader_').fadeOut(500, function(){
+            if (!data.hasOwnProperty('answers') || data.answers.length === 0) {
+              $('#_main_welcome_').fadeIn(500)
+            } else {
+              data.answers.forEach(answer => {
+                addNewAnswer(answer, answer.question, true)
+              });
+
+              setTimeout(() => {
+                $('.answered-question').fadeIn(500)
+              }, 200);
+            }
+          })
+          
+        },
+      });
+    }
+
+    $(document).ready(function() {
+      initChat();
+      $('#cancel-modal').click(function(){
+        closeFeedbackModal();
+      });
+      $('#_reset_conversation_btn_').click(function(){
+        $.ajax({
+          url: '/reset',
+          type: 'get',
+          contentType: 'application/json',
+          success: function(data) {
+            $('.answered-question').fadeOut(500).promise().done(function() {
+              $('#_main_welcome_').show();
+              $('#_main_preview_container_').fadeIn(500, function(){
+                setTimeout(() => {
+                  $('.answered-question').remove()
+                }, 800);
+              });
+            });
+          },
+        });
+      });
+
+      $('#_feedback_form').submit(function(e) {
+        e.preventDefault();
+        closeFeedbackModal();
+        const answerId = $('#_feedback_id_').val();
+        $(`.btn-feedback-${answerId}`).prop('disabled', true);
+        $(`#_negative_btn_ico_${answerId}`).addClass('hidden');
+        $(`#_negative_btn_loader_${answerId}`).removeClass('hidden');
+
+        sendFeedback({
+          in_agree: false,
+          answer_id: answerId,
+          rule: $('#feedback_suggested_rule').val(),
+          comment: $('#feedback_explanation').val(),
+        }, () =>{
+          $(`#_negative_btn_ico_${answerId}`).removeClass('hidden');
+          $(`#_negative_btn_loader_${answerId}`).addClass('hidden');
+        })
+        this.reset();
+      });
+
+      $('#_chat_form_').submit(function(e) {
+        e.preventDefault();
+
+        const query = $('#_question_query_').val().trim();
+        if (query === '') return;
+
+        // Desactiva botón y muestra loader
+        $('#send-button').prop('disabled', true);
+        $('#send-icon').addClass('hidden');
+        $('#loader').removeClass('hidden');
+        $('#_question_query_').val('')
+        $.ajax({
+          url: '/',
+          type: 'POST',
+          contentType: 'application/json',
+          data: JSON.stringify({ question: query }),
+          success: function(data) {
+            addNewAnswer(data.response, query)
+          },
+          error: function() {
+            alert('Error al procesar la pregunta.');
+          },
+          complete: function() {
+            // Reactiva botón y oculta loader
+            $('#send-button').prop('disabled', false);
+            $('#send-icon').removeClass('hidden');
+            $('#loader').addClass('hidden');
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>

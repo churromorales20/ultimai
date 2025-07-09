@@ -1,0 +1,12 @@
+pdfplumber 
+google-generativeai
+psycopg2-binary
+numpy
+langchain 
+langchain-google-genai
+langchain-community
+fastapi 
+uvicorn
+sqlalchemy
+faiss-cpu
+langsmith
