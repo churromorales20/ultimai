@@ -1,7 +1,5 @@
 import uuid
-from pydantic import BaseModel
 from typing import Optional
-from database.db import DatabaseManager
 from fastapi import FastAPI, Response, Cookie, Header, Depends
 from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
@@ -10,6 +8,7 @@ from services.rule_answers_service import RuleAnswerSrvc
 from services.views_service import ViewsSrvc
 from sqlalchemy.orm import Session
 from database.db import db_manager
+from utils.requests import AnswerFeedbackRequest, QuestionRequest
 
 db_manager.create_all_tables()
 
@@ -42,15 +41,6 @@ def index(
 
     return ViewsSrvc.render('home', preferred_language)
 
-class QuestionRequest(BaseModel):
-    question: str
-
-class AnswerFeedbackRequest(BaseModel):
-    in_agree: bool
-    answer_id: str
-    rule: Optional[str] = None  # Rule es opcional y puede ser None
-    comment: Optional[str] = None  # Comment es opcional y puede ser None
-
 @app.get("/init")
 def init(
     ultimai_identifier: str | None = Cookie(default=None),
@@ -80,7 +70,6 @@ def response_answer(
     
 @app.post("/answer/feedback")
 def answer_feedback(payload: AnswerFeedbackRequest, db: Session = Depends(db_manager.get_db)):
-    
     try:
         RuleAnswerSrvc.add_feeback(db, payload)
 
