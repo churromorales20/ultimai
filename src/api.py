@@ -3,12 +3,15 @@ from typing import Optional
 from fastapi import FastAPI, Response, Cookie, Header, Depends
 from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
+from dotenv import load_dotenv
 from services.rule_questions_service import UltimateRulesAssistantSrvc
 from services.rule_answers_service import RuleAnswerSrvc
 from services.views_service import ViewsSrvc
 from sqlalchemy.orm import Session
 from database.db import db_manager
 from utils.requests import AnswerFeedbackRequest, QuestionRequest
+
+load_dotenv()
 
 db_manager.create_all_tables()
 

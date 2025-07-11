@@ -1,4 +1,4 @@
-from dotenv import load_dotenv
+import os
 from typing import List, Dict, Union
 from pydantic import BaseModel, Field
 from utils.text_file_reader import read_raw_text_file
@@ -7,8 +7,6 @@ from langchain.memory import ConversationBufferMemory
 from langchain_core.prompts import ChatPromptTemplate, SystemMessagePromptTemplate, HumanMessagePromptTemplate
 from langchain_core.output_parsers import PydanticOutputParser
 from langchain.schema import HumanMessage, SystemMessage, AIMessage
-
-load_dotenv()
 
 class PlayExplanation(BaseModel):
     id: str = Field(description="LEAVE this field empty.")

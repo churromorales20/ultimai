@@ -5,9 +5,9 @@ services:
     container_name: ultimate_postgres
     restart: always
     environment:
-      POSTGRES_USER: ultimate_user
-      POSTGRES_PASSWORD: ultimate_password
-      POSTGRES_DB: ultimate_db
+      POSTGRES_USER: ${DATABASE_USER}
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
+      POSTGRES_DB: ${DATABASE_NAME}
     ports:
       - "5432:5432"
     volumes:
@@ -21,8 +21,8 @@ services:
     container_name: ultimate_pgadmin
     restart: always
     environment:
-      PGADMIN_DEFAULT_EMAIL: admin@admin.com
-      PGADMIN_DEFAULT_PASSWORD: admin_password
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_USER}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_PASSWORD}
     ports:
       - "8080:80"
     depends_on:
@@ -42,6 +42,7 @@ services:
       - "8000:8000"
     volumes:
       - ./src:/app
+      - ./.env:/app/.env
     command: uvicorn api:app --host 0.0.0.0 --port 8000 --reload
     depends_on:
       - postgres
