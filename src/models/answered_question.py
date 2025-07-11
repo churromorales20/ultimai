@@ -2,9 +2,9 @@ import uuid
 from datetime import datetime
 from sqlalchemy.dialects.postgresql import UUID, ARRAY
 from sqlalchemy import Column, String, DateTime, Boolean, JSON
-from database.db import Base
+from database.db import db_manager
 
-class AnsweredQuestion(Base):
+class AnsweredQuestion(db_manager.Base):
     __tablename__ = "answered_questions"
 
     id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)

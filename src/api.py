@@ -1,18 +1,23 @@
 import uuid
-from pydantic import BaseModel, Field
+from pydantic import BaseModel
 from typing import Optional
-from fastapi import FastAPI, Response, Cookie, Header
-from fastapi.responses import HTMLResponse, RedirectResponse
+from database.db import DatabaseManager
+from fastapi import FastAPI, Response, Cookie, Header, Depends
+from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from services.rule_questions_service import UltimateRulesAssistantSrvc
 from services.rule_answers_service import RuleAnswerSrvc
 from services.views_service import ViewsSrvc
+from sqlalchemy.orm import Session
+from database.db import db_manager
+
+db_manager.create_all_tables()
 
 app = FastAPI()
 app.mount("/assets", StaticFiles(directory="assets"), name="assets")
 
 @app.get("/", response_class=HTMLResponse)
-async def root(
+def index(
     response: Response, 
     ultimai_identifier: str | None = Cookie(default=None), 
     preferred_language: str | None = Cookie(default=None), 
@@ -47,33 +52,37 @@ class AnswerFeedbackRequest(BaseModel):
     comment: Optional[str] = None  # Comment es opcional y puede ser None
 
 @app.get("/init")
-async def root(ultimai_identifier: str | None = Cookie(default=None)):
-    answers = []
+def init(
+    ultimai_identifier: str | None = Cookie(default=None),
+    db: Session = Depends(db_manager.get_db),
+    answers = []):
+    
     if ultimai_identifier:
-        answers = RuleAnswerSrvc.loadPrevious(ultimai_identifier)
+        answers = RuleAnswerSrvc.loadPrevious(db, ultimai_identifier)
 
     return {"answers": answers}
 
 @app.post("/")
-async def root(
+def response_answer(
     payload: QuestionRequest, 
     preferred_language: str | None = Cookie(default=None), 
+    db: Session = Depends(db_manager.get_db),
     ultimai_identifier: str | None = Cookie(default=None)):
     try:
         response = UltimateRulesAssistantSrvc.invoke(payload.question, ultimai_identifier, preferred_language)
-        id = RuleAnswerSrvc.save(payload.question, response, ultimai_identifier)
-
+        id = RuleAnswerSrvc.save(db, payload.question, response, ultimai_identifier)
         response.id = id
+
         return {"success": True, "response": response}
     except Exception as e:
         print(e)
         return {"success": False}
     
 @app.post("/answer/feedback")
-async def root(payload: AnswerFeedbackRequest):
+def answer_feedback(payload: AnswerFeedbackRequest, db: Session = Depends(db_manager.get_db)):
     
     try:
-        RuleAnswerSrvc.add_feeback(payload)
+        RuleAnswerSrvc.add_feeback(db, payload)
 
         return {"success": True}
     except Exception as e:
@@ -81,7 +90,7 @@ async def root(payload: AnswerFeedbackRequest):
         return {"success": False}
     
 @app.get("/reset")
-async def root(response: Response, ultimai_identifier: str | None = Cookie(default=None)):
+def reset_conversation(response: Response, ultimai_identifier: str | None = Cookie(default=None)):
     response.set_cookie(
         key="ultimai_identifier",
         value=uuid.uuid4(),
