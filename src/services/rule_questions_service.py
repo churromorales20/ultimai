@@ -1,4 +1,4 @@
-import os
+from dotenv import load_dotenv
 from typing import List, Dict, Union
 from pydantic import BaseModel, Field
 from utils.text_file_reader import read_raw_text_file
@@ -8,11 +8,7 @@ from langchain_core.prompts import ChatPromptTemplate, SystemMessagePromptTempla
 from langchain_core.output_parsers import PydanticOutputParser
 from langchain.schema import HumanMessage, SystemMessage, AIMessage
 
-
-os.environ["LANGSMITH_API_KEY"] = "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"
-os.environ["LANGCHAIN_TRACING_V2"] = "true"
-os.environ["LANGCHAIN_PROJECT"] = "UltimaAI Agent"
-os.environ["GOOGLE_API_KEY"] = "AIzaSyDuz_7HUA9hfzkB6NU0tPEWvYG9uaKpnP8"
+load_dotenv()
 
 class PlayExplanation(BaseModel):
     id: str = Field(description="LEFT this field empty")
@@ -26,7 +22,6 @@ class UltimateRulesAssistantSrvc:
 
     @classmethod
     def invoke(cls, question: str, identifier: str, lang: str):
-        """Ejecuta el modelo con la pregunta y el contexto."""
         llm = ChatGoogleGenerativeAI(model="gemini-2.0-flash")
 
         parser = PydanticOutputParser(pydantic_object=PlayExplanation)
