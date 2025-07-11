@@ -11,11 +11,11 @@ from langchain.schema import HumanMessage, SystemMessage, AIMessage
 load_dotenv()
 
 class PlayExplanation(BaseModel):
-    id: str = Field(description="LEFT this field empty")
-    signals: List[str] = Field(description="List of signals (strings) to be used according to its criteria.")
-    rule: str = Field(description="El número de la regla relevante (por ejemplo, 2.5). **SIEMPRE DEBES PROPORCIONAR UN NÚMERO DE REGLA. NUNCA dejes este campo vacío. Da tu mejor shot")
-    explanation: str = Field(description="EXPLANATION_OF_WHY_THIS_RULE_APPLIES, Una explicación concisa de por qué se aplica esta regla a la pregunta. Explica el razonamiento lo más claramente posible.")
-    short_answer: str = Field(description="EG: Yes it applys, Una respuesta corta y concisa a la pregunta basada en la explicación")
+    id: str = Field(description="LEAVE this field empty.")
+    signals: List[str] = Field(description="List of signals (strings) to be used according to the criteria.")
+    rule: str = Field(description="The number of the relevant rule (e.g., 2.5). **YOU MUST ALWAYS PROVIDE A RULE NUMBER. NEVER leave this field empty. Do your best shot.**")
+    explanation: str = Field(description="A concise explanation of WHY THIS RULE APPLIES to the question. Explain the reasoning as clearly as possible.")
+    short_answer: str = Field(description="E.g.: Yes, it applies. A short and concise answer to the question based on the explanation.")
 
 class UltimateRulesAssistantSrvc:
     _memories: Dict[str, ConversationBufferMemory] = {}  # Almacenar memorias por ID de usuario
@@ -50,15 +50,13 @@ class UltimateRulesAssistantSrvc:
     
     @classmethod
     def remove_memory(cls, identifier: str):
-        """Remueve la memoria asociada a un ID de usuario."""
         if identifier in cls._memories:
             del cls._memories[identifier]
         else:
-            print(f"No se encontró memoria para el usuario: {identifier}")
+            print(f"No memory found for the user: {identifier}")
 
     @classmethod
     def get_memory(cls, identifier) -> ConversationBufferMemory:
-        """Obtiene o crea la memoria para un usuario específico."""
         if identifier not in cls._memories:
             cls._memories[identifier] = ConversationBufferMemory(return_messages=True)
         return cls._memories[identifier]

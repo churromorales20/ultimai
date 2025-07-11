@@ -5,4 +5,4 @@ def read_raw_text_file(file_path):
   except FileNotFoundError:
       print(f"Error: File '{file_path}' not found.")
   except Exception as e:
-      print(f"Error al cargar las reglas desde el archivo: {e}")
+      print(f"Error loading file '{file_path}' content: {e}")
