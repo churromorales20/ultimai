@@ -10,3 +10,4 @@ uvicorn
 sqlalchemy
 faiss-cpu
 langsmith
+load_dotenv
