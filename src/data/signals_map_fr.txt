@@ -1,0 +1,68 @@
+image: foul
+explanation: Utilisé pour indiquer qu'une faute a été commise. Le lanceur étend un bras et frappe l’avant-bras de l’autre bras, qui est tendu.
+
+image: violation
+explanation: Indique une violation. Les deux mains sont placées sur le dessus de la tête, formant un « Y » avec les poings fermés.
+
+image: goal
+explanation: Utilisé pour signaler qu’un but a été marqué. Les deux bras sont levés bien droits, les paumes tournées vers l’intérieur.
+
+image: contest
+explanation: Indique un appel contesté. Le lanceur étend un bras et frappe l’avant-bras de l’autre bras, qui est tendu.
+
+image: uncontested
+explanation: Indique qu’un appel est accepté ou non contesté. Les avant-bras sont étendus vers l’avant, les coudes serrés contre le corps, paumes tournées vers le haut.
+
+image: in_or_out
+explanation: Indique si un joueur ou le disque est à l’intérieur ou à l’extérieur des limites. Un bras est étendu sur le côté, pointant vers l’intérieur ou l’extérieur du terrain.
+
+image: retract_accept
+explanation: Utilisé lorsqu’un joueur se rétracte de son appel ou accepte une décision. Un mouvement de balayage est effectué avec les deux bras étendus devant le corps, se déplaçant vers le bas.
+
+image: down
+explanation: Indique que le disque est au sol. Utilisez l’index pour pointer vers le sol.
+
+image: pick
+explanation: Utilisé pour indiquer une obstruction (pick). Les bras sont levés, coudes pliés, poings pointant vers la tête.
+
+image: up
+explanation: Indique que le disque est en l’air ou lancé haut. Coude baissé, avant-bras vertical, index pointant vers le haut.
+
+image: timeout
+explanation: Indique un temps mort. Formez un « T » avec vos mains. Cela peut être fait avec les deux mains formant le T ou une seule main avec le disque dans l’autre.
+
+image: marking_infraction
+explanation: Indique une infraction de marquage. Les bras sont étendus sur les côtés, paumes tournées vers l’avant.
+
+image: turnover
+explanation: Bras droit tendu devant le corps, paume vers le haut, puis tourné vers le bas.
+
+image: time_violation
+explanation: Tapotez votre tête à plusieurs reprises avec la paume ouverte de votre main.
+
+image: 4_men
+explanation: Mains derrière la tête, coudes vers l’extérieur.
+
+image: out_of_bounds
+explanation: Bras croisés et poings fermés au-dessus de la tête, formant un X.
+
+image: spirit_of_the_game
+explanation: Formez un « T » inversé avec vos mains.
+
+image: technical_timeout
+explanation: Mains entrelacées et bras levés au-dessus de la tête.
+
+image: match_point
+explanation: Pointez les deux bras vers le haut, paumes vers le bas.
+
+image: 4_women
+explanation: Bras étendus sur les côtés avec les poings fermés.
+
+image: game_stopped
+explanation: Étendez les bras et balancez-les d’un côté à l’autre devant le corps.
+
+image: travel
+explanation: Poings fermés, faites tourner les poignets en cercle vertical.
+
+image: who_called_it
+explanation: Pointez avec les bras et les mains étendus.

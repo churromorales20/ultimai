@@ -1,0 +1,47 @@
+Définitions :
+- Acte de lancer : Voir mouvement de lancer.
+- Affecter le jeu : Une infraction ou un appel affecte le jeu s’il est raisonnable de supposer que le résultat de l’action aurait pu être significativement différent sans l’infraction ou l’appel.
+- Zone d’attaque : La zone d’en-but dans laquelle l’équipe concernée tente actuellement de marquer.
+- Meilleure perspective : Le point de vue le plus complet dont dispose un joueur, incluant la position relative du disque, du sol, des joueurs et des lignes de marquage impliquées dans l’action.
+- Appel : Déclaration clairement communiquée indiquant qu’une faute, une infraction, une violation, un turnover ou une blessure s’est produite. Les termes suivants peuvent être utilisés : Faute, Marcher (Travel), nom spécifique de l’infraction de marquage, Violation (ou nom spécifique de la violation), nom spécifique des turnovers, Technique et Blessure.
+- Réception : Un disque sans rotation coincé entre au moins deux parties du corps. Si un joueur attrape initialement une passe mais qu’avant d’établir la possession, il ne maintient pas la réception (« maintenir la réception » signifie continuer à coincer un disque sans rotation entre au moins deux parties du corps), alors cette réception initiale est considérée comme terminée.
+- Zone centrale : La zone du terrain de jeu incluant les lignes de but mais excluant les zones d’en-but et les lignes périphériques.
+- Zone défensive : La zone d’en-but dans laquelle l’équipe concernée tente actuellement d’empêcher l’adversaire de marquer.
+- Joueur défensif : Tout joueur dont l’équipe n’a pas la possession du disque.
+- Zone d’en-but : Une des deux zones à l’extrémité du terrain où les équipes peuvent marquer un but en attrapant le disque.
+- Ligne de but : La ligne séparant la zone centrale de chaque zone d’en-but. Elle ne fait pas partie de la zone d’en-but.
+- Sol : Le sol comprend tous les objets solides importants, y compris l’herbe, les cônes de marquage, l’équipement, l’eau, les arbres, les clôtures, les murs et les non-joueurs, mais exclut tous les joueurs et leurs vêtements portés, les particules en suspension et les précipitations.
+- Contact avec le sol : Désigne tout contact d’un joueur avec le sol directement lié à un événement ou une manœuvre spécifique, y compris l’atterrissage ou la récupération après une perte d’équilibre (par ex. saut, plongée, inclinaison ou chute).
+- Marquage : Un défenseur marque un joueur offensif lorsqu’il est à moins de trois mètres de celui-ci et qu’il se concentre principalement sur ce joueur et réagit à ses actions.
+- Interception : Lorsqu’un joueur de l’équipe défensive établit la possession d’un lancer effectué par un joueur de l’équipe offensive.
+- Position légitime : La position stationnaire ou en mouvement établie par un joueur qui ne viole aucune règle.
+- Ligne : Une limite définissant les zones de jeu. Sur un terrain sans lignes tracées, la limite est définie comme une ligne imaginaire entre deux marqueurs de terrain avec l’épaisseur desdits marqueurs. Les segments de ligne ne sont pas extrapolés au-delà des marqueurs définissant.
+- Jouer le disque : Lorsque le disque est en l’air et qu’un joueur tente d’entrer en contact avec celui-ci de quelque manière que ce soit, par ex. pour l’attraper ou le bloquer. Cela inclut le fait de courir vers l’endroit où il prévoit d’entrer en contact avec le disque.
+- Marqueur : Le joueur défensif qui peut annoncer le compte de stall sur le lanceur.
+- Contact mineur : Contact impliquant une force physique minimale et qui ne modifie pas les mouvements ou la position d’un autre joueur. Le contact avec les bras ou mains étendus d’un adversaire qui sont sur le point de, ou sont déjà en contact avec le disque, ou le contact avec la main du lanceur pendant le mouvement de lancer, n’est pas considéré comme un contact mineur.
+- Non-joueur : Toute personne, y compris un membre de l’équipe, qui n’est pas actuellement joueur.
+- Joueur offensif : Un joueur dont l’équipe est en possession du disque.
+- Hors-limites (OB) : Tout ce qui ne fait pas partie du terrain de jeu, y compris les lignes périphériques.
+- Lignes périphériques : Lignes séparant la zone centrale ou la zone d’en-but de la zone hors-limites. Elles ne font pas partie du terrain de jeu.
+- Pivot : Lorsqu’un lanceur se déplace dans une direction tout en gardant une partie de son corps en contact constant avec un point spécifique au sol appelé le point de pivot. Un lanceur établit un point de pivot en plaçant, ou en gardant, une partie spécifique de son corps sur un point précis qu’il a l’intention d’utiliser comme point de pivot. Si un lanceur a plusieurs options de point de pivot, le point de pivot n’est pas déterminé tant qu’il ne pivote pas.
+- Emplacement du pivot : Le point du terrain où le lanceur doit établir un point de pivot après un turnover, après le pull, après un temps mort, après avoir quitté la zone centrale ou là où un point de pivot a déjà été établi.
+- Jeu : Le temps après le pull et avant qu’un but ne soit marqué. Le jeu peut s’arrêter suite à un appel, auquel cas le jeu reprend avec un check.
+- Joueur : Les personnes qui participent effectivement au point de jeu en cours.
+- Terrain de jeu : La zone incluant la zone centrale et les zones d’en-but, mais excluant les lignes périphériques.
+- Possession du disque : Un joueur établit la possession d’une passe lorsque :
+  1) il attrape une passe et maintient ensuite cette réception pendant plus d’un instant perceptible, et
+  2) il maintient la réception pendant tout contact avec le sol lié à la réception, ou jusqu’à ce qu’il lance le disque.
+
+  Un joueur peut également établir la possession lorsqu’un disque qui a déjà touché le sol est ramassé ou lui est donné après un turnover, un pull ou un arrêt de jeu. Une fois la possession établie, un joueur peut changer sa prise sur le disque sans que cela affecte sa possession, tant qu’il maintient le contact avec le disque.
+  Un disque en possession d’un joueur, ou attrapé par un joueur, est considéré comme faisant partie de ce joueur.
+  L’équipe dont un joueur est en possession ou dont les joueurs peuvent ramasser le disque est considérée comme l’équipe en possession.
+- Pré-stall : Avertissement concernant les délais pour reprendre le jeu, donné par des avertissements à vingt (20), dix (10) et cinq (5) secondes (selon le cas).
+- Pull : Le lancer de la défense vers l’attaque qui démarre le jeu au début d’une mi-temps ou après un but. Le pull n’est pas considéré comme une passe légale.
+- Récepteurs : Tous les joueurs offensifs sauf le lanceur.
+- Arrêt pour l’Esprit : Un arrêt pour discuter des questions liées à l’Esprit du Jeu.
+- Arrêt de jeu : Toute interruption du jeu due à une faute, une violation, une discussion, un appel contesté, une blessure ou un temps mort, nécessitant un check pour reprendre le jeu.
+- Lancer : Un disque en vol à la suite d’un mouvement de lancer, y compris après une feinte et un disque intentionnellement lâché, qui entraîne une perte de contact entre le lanceur et le disque. Une passe est l’équivalent d’un lancer.
+- Lanceur : Le joueur offensif en possession du disque, ou le joueur qui vient de lancer le disque avant que le résultat du lancer ne soit déterminé.
+- Mouvement de lancer : Le mouvement de lancer est le mouvement qui transfère l’élan du lanceur au disque dans la direction du vol et qui entraîne un lancer. Les pivots et les préparations ne font pas partie de l’acte de lancer.
+- Turnover : Tout événement entraînant un changement d’équipe en possession. Un turnover n’est pas considéré comme une violation.
+- Là où le disque s’arrête : Désigne l’endroit où un joueur établit la possession, où le disque s’arrête naturellement ou où le disque est arrêté de rouler ou de glisser.

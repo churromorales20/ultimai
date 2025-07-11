@@ -1,0 +1,68 @@
+image: foul
+explanation: Used to indicate that a foul has been committed. The thrower extends one arm and strikes the forearm of the other arm, which is extended.
+
+image: violation
+explanation: Indicates a violation. Both hands are placed on top of the head, forming a 'Y' shape with closed fists.
+
+image: goal
+explanation: Used to signal that a goal has been scored. Both arms are raised straight up, with the palms facing inward.
+
+image: contest
+explanation: Indicates a contested call. The thrower extends one arm and strikes the forearm of the other arm, which is extended.
+
+image: uncontested
+explanation: Signals that a call is accepted or uncontested. The forearms are extended forward, elbows tight against the body, with the palms facing up.
+
+image: in_or_out
+explanation: Indicates whether a player or the disc is in or out of bounds. One arm is extended sideways, pointing inward or outward relative to the playing field.
+
+image: retract_accept
+explanation: Used when someone retracts their call or accepts a call/decision. A sweeping motion is made with both arms extended in front of the body, moving downward.
+
+image: down
+explanation: Signals that the disc is on the ground. Use the index finger to point to the ground.
+
+image: pick
+explanation: Used to indicate an obstruction (pick). Arms are raised, elbows bent, and fists pointing toward the head.
+
+image: up
+explanation: Signals that the disc is up or being thrown high. Elbow down, forearm vertical, index finger pointing upward.
+
+image: timeout
+explanation: Indicates a timeout. Form a 'T' shape with your hands. This can be done with both hands forming the T or with one hand and the disc in the other.
+
+image: marking_infraction
+explanation: Signals a marking infraction. Arms are extended to the sides, with palms facing forward.
+
+image: turnover
+explanation: Right arm extended in front of the body, palm facing up, then rotated downward.
+
+image: time_violation
+explanation: Tap your head repeatedly with the open palm of your hand.
+
+image: 4_men
+explanation: Hands behind the head, elbows out to the sides.
+
+image: out_of_bounds
+explanation: Arms crossed and fists closed above the head, forming an X.
+
+image: spirit_of_the_game
+explanation: Form an inverted T shape with your hands.
+
+image: technical_timeout
+explanation: Hands clasped together and arms raised above the head.
+
+image: match_point
+explanation: Point both arms upward, with palms facing down.
+
+image: 4_women
+explanation: Arms extended to the sides with closed fists.
+
+image: game_stopped
+explanation: Extend your arms and move them side to side in a sweeping motion across your body.
+
+image: travel
+explanation: Closed fists, rotating the wrists in a vertical circle.
+
+image: who_called_it
+explanation: Point with your arms and hands extended.

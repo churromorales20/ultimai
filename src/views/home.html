@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="es" class="h-full">
+<html   class="h-full">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Chat Ultimate Frisbee</title>
+  <title>{{Lang:main_title}}</title>
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://cdn.jsdelivr.net/npm/@mdi/font@7.4.47/css/materialdesignicons.min.css" rel="stylesheet">
@@ -17,18 +17,35 @@
   </style>
 </head>
 <body class="h-full flex flex-col bg-gray-100 lg:items-center">
-  <!-- Header -->
+
   <div class="shadow-2xl h-full w-full flex flex-col lg:max-w-[600px]">
-    <header class="bg-blue-600 text-white px-4 py-3 flex items-center">
-      <i class="mdi mdi-frisbee text-2xl mr-2"></i>
-      <h1 class="text-xl font-semibold">UltimAI</h1>
+    <header class="bg-blue-600 text-white px-4 py-3 flex items-center justify-between">
+      <div class="flex items-center">
+        <i class="mdi mdi-frisbee text-2xl mr-2"></i>
+        <h1 class="text-xl font-semibold">{{Lang:header_title}}</h1>
+      </div>
+    
+      <div class="relative">
+        <div class="absolute inset-y-0 left-0 flex items-center pl-2">
+          <img id="_lang_flag_icon_" src="" alt="Bandera de Inglés" class="w-6 h-4 rounded mr-1">
+        </div>
+        <select id="_language_selector_" class="appearance-none bg-blue-500 border border-blue-700 text-white rounded py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent pl-10 pr-8">
+          <option value="en">English</option>
+          <option value="es">Español</option>
+          <option value="fr">Français</option>
+        </select>
+        <input type="hidden" id="preferred_language">
+        <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-white">
+          <i class="mdi mdi-chevron-down"></i>
+        </div>
+      </div>
     </header>
     
     <main id="_chat_answers_container_" class="flex-1 flex flex-col bg-white overflow-y-auto p-4 space-y-4">
       <div id="_main_preview_container_" class="flex-1 flex items-center justify-center">
         <i id="_main_loader_" class="mdi mdi-loading text-8xl text-blue-600 animate-spin"></i>
-        <p id="_main_welcome_"class="text-center hidden text-gray-400">Bienvenido a UltimAI, el primer agente de IA diseñado para ayudarte a resolver o aclarar dudas que puedan surgir durante un partido de Ultimate Frisbee. 
-          Puedes hacer preguntas como, por ejemplo: <br /><b>¿En qué momento se debe marcar un pick?</b></p>
+        <p id="_main_welcome_"class="text-center hidden text-gray-400">{{Lang:welcome_message}} 
+          Puedes hacer preguntas como, por ejemplo: <br /><b>{{Lang:example_question}}</b></p>
       </div>
     </main>
     
@@ -36,7 +53,7 @@
       <div>
         <button id="_reset_conversation_btn_" class="flex items-center space-x-1 px-2 py-1 border border-gray-400 rounded-md text-gray-700 hover:bg-gray-200">
           <i class="mdi mdi-refresh text-sm"></i>
-          <span class="text-sm">Reiniciar conversacion</span>
+          <span class="text-sm">{{Lang:reset_conversation}}</span>
         </button>
       </div>
       <div>
@@ -44,7 +61,7 @@
           <input 
             type="text"
             id="_question_query_"
-            placeholder="Pregunta algo sobre Ultimate Frisbee..."
+            placeholder="{{Lang:question_placeholder}}"
             class="flex-1 border rounded-full px-4 py-2 focus:outline-none focus:ring focus:border-blue-300"
             required
           >
@@ -66,25 +83,25 @@
     <div class="bg-white rounded-lg shadow-lg w-full max-w-md m-4 p-2 space-y-4">
       <h2 class="text-xl font-semibold flex items-center space-x-2">
         <i class="mdi mdi-pencil text-2xl"></i>
-        <span>Sugerir nueva regla</span>
+        <span>{{Lang:suggest_rule}}</span>
       </h2>
       <form id="_feedback_form" class="space-y-4">
         <div>
-          <label for="suggested-rule" class="block text-sm font-medium text-gray-700 mb-1">Regla sugerida</label>
+          <label for="suggested-rule" class="block text-sm font-medium text-gray-700 mb-1">{{Lang:suggested_rule}}</label>
           <input type="text" id="feedback_suggested_rule" name="suggested_rule" class="w-full border rounded px-3 py-2 focus:outline-none focus:ring focus:border-blue-300" required>
         </div>
         <div>
-          <label for="explanation" class="block text-sm font-medium text-gray-700 mb-1">Explicación / comentarios</label>
+          <label for="explanation" class="block text-sm font-medium text-gray-700 mb-1">{{Lang:explanation_comments}}</label>
           <textarea id="feedback_explanation" name="explanation" rows="4" class="w-full border rounded px-3 py-2 focus:outline-none focus:ring focus:border-blue-300" required></textarea>
         </div>
         <div class="flex justify-end space-x-2 pt-2">
           <button type="button" id="cancel-modal" class="flex items-center space-x-1 px-4 py-1 rounded-md bg-gray-300 text-gray-800 hover:bg-gray-400">
             <i class="mdi mdi-close"></i>
-            <span>Cancelar</span>
+            <span>{{Lang:cancel}}</span>
           </button>
           <button type="submit" class="flex items-center space-x-1 px-4 py-1 rounded-md bg-green-600 text-white hover:bg-green-700">
             <i class="mdi mdi-check"></i>
-            <span>Enviar</span>
+            <span>{{Lang:send}}</span>
             <input type="hidden" id="_feedback_id_" value="">
           </button>
         </div>
@@ -138,7 +155,7 @@
                         displaySignals(itemId)
                       }
                     })
-                    .type(`Señales relacionadas`)
+                    .type(`{{Lang:related_signals}}`)
                     .go();
                     signals.destroy();
                   } else {
@@ -147,17 +164,17 @@
                   
                 },
               })
-              .type(`<strong>Explicación:</strong>  ${data.explanation}`)
+              .type(`<strong>{{Lang:explanation}}:</strong>  ${data.explanation}`)
               .go();
               expla.destroy()
             }
           })
-          .type(`<strong>Regla:</strong> ${data.rule}`)
+          .type(`<strong>{{Lang:rule}}:</strong> ${data.rule}`)
           .go();
           ruleNumber.destroy()
         },
         speed: 30
-      }).type(`<strong>Respuesta:</strong> ${data.short_answer}`).go();
+      }).type(`<strong>{{Lang:answer}}:</strong> ${data.short_answer}`).go();
 
       instance.destroy();
 
@@ -193,32 +210,32 @@
       const hiddenAsnwer = fromInit || isEmptyContainer ? 'hidden' : ''
       const imagesDiv = data.hasOwnProperty('signals') && Array.isArray(data.signals) && data.signals.length > 0 ? `
         <div class="signals-container mt-2">
-          <h3 class="text-base text-bold signals-title">${fromInit ? 'Señales relacionadas' : ''}</h3>
-          ${data.signals.map((signal) => `<img class="w-16 h-16 ${fromInit ? '' : 'hidden'}" src="/assets/${signal}.png">`).join(' ')}
+          <h3 class="text-base text-bold signals-title">${fromInit ? '{{Lang:related_signals}}' : ''}</h3>
+          ${data.signals.map((signal) => `<img class="w-16 h-16 ${fromInit ? '' : 'hidden'}" src="/assets/${signal.toLowerCase()}.png">`).join(' ')}
         </div>
       ` : ``
 
       const html = `
         <div class="bg-white rounded-lg shadow p-4 max-w-xl answered-question ${hiddenAsnwer}" id="${itemId}">
-          <p class="text-gray-700"><strong>Pregunta:</strong> ${query}</p>
-          <p class="text-gray-700 short-answer"> ${fromInit ? `<strong>Respuesta:</strong> ${data.short_answer}` : ''}</p>
+          <p class="text-gray-700"><strong>{{Lang:question}}:</strong> ${query}</p>
+          <p class="text-gray-700 short-answer"> ${fromInit ? `<strong>{{Lang:answer}}:</strong> ${data.short_answer}` : ''}</p>
           <div class="mt-2 text-sm text-gray-600">
-            <p class="rule-number"> ${fromInit ? `<strong>Regla:</strong> ${data.rule}` : ''}</p>
-            <p class="long-answer"> ${fromInit ? `<strong>Explicación:</strong> ${data.explanation}` : ''}</p>
+            <p class="rule-number"> ${fromInit ? `<strong>{{Lang:rule}}:</strong> ${data.rule}` : ''}</p>
+            <p class="long-answer"> ${fromInit ? `<strong>{{Lang:explanation}}:</strong> ${data.explanation}` : ''}</p>
           </div>
           ${imagesDiv}
           <div class="mt-4 flex space-x-2">
             <button onclick="sendPositiveFeedback('${data.id}')" class="btn-feedback-${data.id} flex items-center space-x-1 px-3 py-1 rounded-lg bg-green-600 text-white hover:bg-green-700">
               <i id="_positive_btn_ico_${data.id}" class="mdi mdi-thumb-up text-sm"></i>
               <i id="_positive_btn_loader_${data.id}" class="mdi mdi-loading text-sm animate-spin hidden"></i>
-              <span class="hidden sm:block">Estoy de acuerdo</span>
-              <span class="text-sm sm:hidden">De acuerdo</span>
+              <span class="hidden sm:block">{{Lang:agree_long}}</span>
+              <span class="text-sm sm:hidden">{{Lang:agree_short}}</span>
             </button>
             <button onclick="openFeedbackModal('${data.id}')" class="btn-feedback-${data.id} flex items-center space-x-1 px-3 py-1 rounded-lg bg-red-600 text-white hover:bg-red-700">
               <i id="_negative_btn_ico_${data.id}" class="mdi mdi-thumb-down text-sm"></i>
               <i id="_negative_btn_loader_${data.id}" class="mdi mdi-loading text-sm animate-spin hidden"></i>
-              <span class="hidden sm:block">No estoy de acuerdo</span>
-              <span class="text-sm sm:hidden">En desacuerdo</span>
+              <span class="hidden sm:block">{{Lang:disagree_long}}</span>
+              <span class="text-sm sm:hidden">{{Lang:disagree_short}}</span>
             </button>
           </div>
         </div>
@@ -283,8 +300,28 @@
       });
     }
 
+    function getCookie(name) {
+      let value = "; " + document.cookie;
+      let parts = value.split("; " + name + "=");
+      if (parts.length === 2) return parts.pop().split(";").shift();
+    }
+
     $(document).ready(function() {
       initChat();
+      const lang = getCookie('preferred_language');
+      $('#_language_selector_').val(lang);
+      $('#_lang_flag_icon_').attr('src', `https://cdn.jsdelivr.net/npm/flag-icons@6.11.0/flags/4x3/${lang === 'en' ? 'us' : lang}.svg`)
+      $('#_language_selector_').change(function() {
+        const lang = $(this).val()
+        $.ajax({
+          url: `/language/select/${lang}`,
+          type: 'get',
+          contentType: 'application/json',
+          success: function(data) {
+            window.location.reload();
+          },
+        });
+      });
       $('#cancel-modal').click(function(){
         closeFeedbackModal();
       });

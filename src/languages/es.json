@@ -1,0 +1,22 @@
+{
+  "main_title": "UltimAI: Your Ultimate Frisbee Assistant",
+  "header_title": "UltimAI",
+  "welcome_message": "Bienvenido a UltimAI, el primer agente de IA diseñado para ayudarte a resolver o aclarar dudas que puedan surgir durante un partido de Ultimate Frisbee.",
+  "example_question": "¿En qué momento se debe marcar un pick?",
+  "reset_conversation": "Reiniciar conversacion",
+  "question_placeholder": "Pregunta algo sobre Ultimate Frisbee...",
+  "send": "Enviar",
+  "suggest_rule": "Sugerir nueva regla",
+  "suggested_rule": "Regla sugerida",
+  "explanation_comments": "Explicación / comentarios",
+  "cancel": "Cancelar",
+  "question": "Pregunta",
+  "answer": "Respuesta",
+  "rule": "Regla",
+  "explanation": "Explicación",
+  "related_signals": "Señales relacionadas",
+  "agree_long": "Estoy de acuerdo",
+  "agree_short": "De acuerdo",
+  "disagree_long": "No estoy de acuerdo",
+  "disagree_short": "En desacuerdo"
+}

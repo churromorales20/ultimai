@@ -1,0 +1,71 @@
+Mapa de señalizaciones:
+```
+image: foul
+explanation: Se usa para indicar que se ha cometido una falta. El lanzador extiende un brazo y golpea el antebrazo del otro brazo, que está extendido.
+
+image: violation
+explanation: Señala una violación. Ambas manos se colocan sobre la cabeza, formando una forma de 'Y' con los puños cerrados.
+
+image: goal
+explanation: Se usa para indicar que se ha marcado un gol. Ambos brazos se levantan rectos, con las palmas mirando hacia adentro.
+
+image: contest
+explanation: Indica una llamada disputada. El lanzador extiende un brazo y golpea el antebrazo del otro brazo, que está extendido.
+
+image: uncontested
+explanation: Señala que una llamada es aceptada o no disputada. Los antebrazos se extienden hacia adelante, los codos apretados contra el cuerpo, con las palmas hacia arriba.
+
+image: in_or_out
+explanation: Indica si un jugador o el disco está dentro o fuera de los límites. Un brazo se extiende lateralmente, apuntando hacia adentro o hacia afuera del campo de juego.
+
+image: retract_accept
+explanation: Se usa cuando alguien se retracta de su llamada o cuando acepta una llamada/decisión. Se realiza un movimiento de barrido con ambos brazos extendidos frente al cuerpo, moviéndose hacia abajo.
+
+image: down
+explanation: Señala que el disco está en el suelo. Usa el dedo índice para apuntar al suelo.
+
+image: pick
+explanation: Se usa para indicar una obstrucción (pick). Los brazos se levantan, los codos doblados y los puños apuntando hacia la cabeza.
+
+image: up
+explanation: Señala que el disco está arriba, o siendo lanzado alto. Codo hacia abajo, antebrazo vertical y dedo índice apuntando arriba.
+
+image: timeout
+explanation: Indica un tiempo muerto. Forma una forma de 'T' con las manos. Se puede hacer con las dos manos formando la T o solo una con el disco en la otra mano.
+
+image: marking_infraction
+explanation: Señala una infracción de marcaje. Los brazos se extienden hacia los lados, con las palmas mirando hacia adelante.
+
+image: turnover
+explanation: Brazo derecho extendido frente al cuerpo, palma hacia arriba y entonces la rotamos hacia abajo.
+
+image: time_violation
+explanation: Toca tu cabeza repetidamente con la palma abierta de tu mano.
+
+image: 4_men
+explanation: Manos detras de la cabeza, codos hacia los lados.
+
+image: out_of_bounds
+explanation: Brazos cruzados y puños cerrados sobre la cabeza formando una X.
+
+image: spirit_of_the_game
+explanation: Forma una T invertida con las manos.
+
+image: technical_timeout
+explanation: Manos entrelazadas y brazos levantados sobre la cabeza.
+
+image: match_point
+explanation: Apunta con ambos brazos hacia arriba, con palmas hacia abajo.
+
+image: 4_women
+explanation: Brazos extendidos hacia los lados con puños cerrados.
+
+image: game_stopped
+explanation: Extiende los brazos y mueve los brazos en vaivén, en sentido transversal.
+
+image: travel
+explanation: Puños cerrados y gira las muñecas en círculo vertical.
+
+image: who_called_it
+explanation: Apunta con los brazos y manos extendidas.
+```

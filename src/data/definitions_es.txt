@@ -1,3 +1,4 @@
+Definiciones:
 - Acto de lanzar: Ver movimiento de lanzamiento.
 - Afectar la jugada: Una infracción o señalamiento afecta la jugada si es razonable suponer que el resultado de la jugada específica podría haber sido significativamente diferente si la infracción o el señalamiento no hubiera ocurrido.
 - Zona de anotación de ataque: La zona de anotación en la que el equipo en cuestión está intentando anotar actualmente.
